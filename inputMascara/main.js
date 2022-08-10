@@ -18,7 +18,30 @@ inputCard.addEventListener('keydown', (e)=>{
     e.preventDefault();
     handleInput(maskNumber, e.key, cardNumber);
     inputCard.value = cardNumber.join("");
+
     
+    
+});
+
+inputCVV.addEventListener('keydown', (e)=>{
+    if (e.key === 'Tab') {
+        return;        
+    }
+    e.preventDefault();
+    handleInput(maskCVV, e.key,cvvNumber);
+    inputCVV.value = cvvNumber.join("");
+
+    
+    
+});
+inputDate.addEventListener('keydown', (e)=>{
+    if (e.key === 'Tab') {
+        return;        
+    }
+    e.preventDefault();
+    handleInput(maskDate, e.key, dataNumber);
+    inputDate.value = dataNumber.join("");
+
 });
 
 function handleInput(mask, key, arr){
@@ -27,9 +50,11 @@ function handleInput(mask, key, arr){
     if (key === 'Backspace' && arr.length > 0) {
         arr.pop();
         return;
-    } if(numbers.includes(key) && arr.length +a <= mask.length  ) {
-        if (mask[arr.length]) {
-            
+    } if(numbers.includes(key) && arr.length +1 <= mask.length  ) {
+        if (mask[arr.length]==='-' || mask[arr.length]==='/') {
+            arr.push(mask[arr.length], key);
+        }else{
+            arr.push(key);
         }
         
     }
